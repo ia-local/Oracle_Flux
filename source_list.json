@@ -20,11 +20,11 @@
         "name": "Le Journal du Geek",
         "url": "http://feeds.feedburner.com/LeJournalDuGeek"
     },
-            {
+    {
         "secteur": "github",
         "categorie": "Tech Général",
-        "id": 3,
-        "name": "Le Journal du Geek",
-        "url": "http://feeds.feedburner.com/LeJournalDuGeek"
+        "id": 4,
+        "name": "Le Journal",
+        "url": "https://ia-local.github.io/Oracle_Flux/rss.xml"
     }
 ]
