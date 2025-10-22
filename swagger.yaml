@@ -1,0 +1,164 @@
+openapi: 3.0.0
+info:
+  title: Gestionnaire de Flux RSS IA (Groq/Node.js)
+  description: API Backend pour gérer les sources RSS (CRUD), récupérer les articles, et interagir avec l'Assistant IA Groq (llama-3.1-8b-instant) pour l'analyse et la gestion des sources par commandes vocales/textuelles.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Serveur de développement local
+tags:
+  - name: ⚙️ Sources (CRUD)
+    description: Gestion des URLs des flux RSS dans source_list.json
+  - name: 📡 Articles RSS
+    description: Récupération et parsing des articles à partir des sources configurées
+  - name: 🧠 Assistant IA Groq
+    description: Endpoints pour l'analyse de contenu et la gestion des sources par commandes linguistiques
+
+paths:
+  /api/status:
+    get:
+      tags: [📡 Articles RSS]
+      summary: Vérifie l'état de fonctionnement du serveur.
+      responses:
+        '200':
+          description: Serveur opérationnel.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  message:
+                    type: string
+
+  /api/sources:
+    get:
+      tags: [⚙️ Sources (CRUD)]
+      summary: Liste toutes les sources RSS configurées.
+      responses:
+        '200':
+          description: Liste des sources.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Source'
+    post:
+      tags: [⚙️ Sources (CRUD)]
+      summary: Ajoute manuellement une nouvelle source RSS.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SourceInput'
+      responses:
+        '201':
+          description: Source créée avec succès.
+
+  /api/sources/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+        description: ID de la source.
+    put:
+      tags: [⚙️ Sources (CRUD)]
+      summary: Met à jour une source existante.
+      # ... (Définir requestBody et responses) ...
+    delete:
+      tags: [⚙️ Sources (CRUD)]
+      summary: Supprime une source par son ID.
+      responses:
+        '204':
+          description: Source supprimée.
+
+  /api/articles:
+    get:
+      tags: [📡 Articles RSS]
+      summary: Récupère et parse tous les articles de tous les flux.
+      description: Utilise le parsing natif Node.js pour convertir le XML des flux en JSON.
+      responses:
+        '200':
+          description: Liste des articles triés par date.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Article'
+
+  /api/ai/manage:
+    post:
+      tags: [🧠 Assistant IA Groq]
+      summary: Interprète une commande linguistique pour exécuter une action (CRUD/Analyse).
+      description: Utilise Groq pour déterminer l'intention (add, delete, analyse) et renvoie le résultat ou l'exécution CRUD.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+                  description: Commande ou question posée à l'IA.
+      responses:
+        '200':
+          description: Succès de l'opération ou résultat de l'analyse.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/AISuccess'
+                  - $ref: '#/components/schemas/AIAnalysis'
+
+components:
+  schemas:
+    SourceInput:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+      required: [name, url]
+    Source:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        url:
+          type: string
+    Article:
+      type: object
+      properties:
+        sourceName:
+          type: string
+        title:
+          type: string
+        link:
+          type: string
+        date:
+          type: string
+          format: date-time
+        snippet:
+          type: string
+    AISuccess:
+      type: object
+      properties:
+        success:
+          type: string
+        source:
+          $ref: '#/components/schemas/Source'
+    AIAnalysis:
+      type: object
+      properties:
+        analysis:
+          type: string

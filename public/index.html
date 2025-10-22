@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionnaire de Flux RSS Groq/Node.js</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>📰 Mon Gestionnaire RSS</h1>
+        <p>Propulsé par Node.js, Express et l'IA Groq (`llama-3.1-8b-instant`).</p>
+    </header>
+
+    <main>
+        <section id="source-manager">
+            <h2>⚙️ Sources RSS (CRUD)</h2>
+            <form id="add-source-form">
+                <input type="text" id="source-name" placeholder="Nom de la source" required>
+                <input type="url" id="source-url" placeholder="URL du flux RSS" required>
+                <button type="submit">Ajouter Source</button>
+            </form>
+            <div id="sources-list" class="list-container">
+                </div>
+        </section>
+
+        <hr>
+
+<section id="article-viewer">
+    <h2>📡 Articles Récupérés</h2>
+    <button id="refresh-articles">Actualiser les Articles</button>
+    <div id="articles-list" class="list-container">
+        </div>
+</section>
+
+        <hr>
+
+        <section id="ai-assistant">
+            <h2>🧠 Assistant IA Groq</h2>
+            <form id="ai-form">
+                <textarea id="ai-prompt" placeholder="Demandez à l'IA d'analyser le contenu des articles ou des sources..." rows="3" required></textarea>
+                <button type="submit">Analyser</button>
+            </form>
+            <div id="ai-response" class="response-box">
+                </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

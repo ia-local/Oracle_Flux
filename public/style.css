@@ -1,0 +1,146 @@
+/* --- Base et Général --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ecf0f1; /* Gris très clair */
+    color: #34495e; /* Gris foncé */
+    margin: 0;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #3498db; /* Bleu primaire */
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+main {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+section {
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+h2 {
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+    color: #2c3e50; /* Presque noir */
+    font-size: 1.8em;
+}
+
+/* --- Formulaires et Boutons --- */
+form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input[type="text"], input[type="url"], textarea {
+    padding: 12px;
+    border: 1px solid #bdc3c7;
+    border-radius: 6px;
+    flex-grow: 1;
+    font-size: 1em;
+}
+
+button {
+    background-color: #2ecc71; /* Vert pour les actions */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+button:hover {
+    background-color: #27ae60;
+    transform: translateY(-1px);
+}
+
+/* --- Listes d'Articles et de Sources --- */
+.list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.source-item {
+    padding: 15px;
+    border: 1px solid #dcdde1;
+    border-left: 5px solid #3498db; /* Bande de couleur pour la source */
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+.source-item:hover {
+    background-color: #f8f9fa;
+}
+
+.source-item button.delete-btn {
+    background-color: #e74c3c;
+    padding: 8px 12px;
+}
+.source-item button.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Style spécifique aux articles */
+.article-item {
+    padding: 15px;
+    border: 1px solid #dcdde1;
+    border-radius: 6px;
+    transition: box-shadow 0.3s;
+}
+.article-item:hover {
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.2);
+}
+
+.article-item h3 {
+    margin-top: 0;
+    font-size: 1.3em;
+}
+
+.article-item a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.article-item small {
+    color: #7f8c8d;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* --- Messages et IA --- */
+.response-box {
+    background: #f4f6f7;
+    border: 1px solid #bdc3c7;
+    padding: 20px;
+    border-radius: 6px;
+    white-space: pre-wrap;
+    font-size: 1.1em;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.error {
+    color: #e74c3c;
+    font-weight: bold;
+}
+.loading-message {
+    color: #3498db;
+    font-style: italic;
+}

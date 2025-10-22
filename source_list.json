@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "Actualités RTL Monde",
+        "url": "https://infos.rtl.lu/rss/grande-region"
+    },
+    {
+        "id": 2,
+        "name": "RTL",
+        "url": "https://infos.rtl.lu/rss/headlines"
+    },
+{
+        "id": 3,
+        "name": "Actualités Google",
+        "url": "https://news.google.com/rss?hl=fr&gl=FR&ceid=FR:fr"
+    },
+    {
+        "id": 4,
+        "name": "Le Monde (Tech)",
+        "url": "https://www.lemonde.fr/rss/en-continu.xml"
+    }
+]
