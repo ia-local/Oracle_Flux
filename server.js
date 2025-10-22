@@ -24,7 +24,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Chemin vers les fichiers statiques et le fichier de sources
-const publicPath = join(__dirname, 'public');
+const publicPath = join(__dirname, 'docs');
 const SOURCE_FILE = join(__dirname, 'source_list.json');
 
 // Middlewares
@@ -84,7 +84,7 @@ async function getGroqResponse(prompt) {
     try {
         const chatCompletion = await groq.chat.completions.create({
             messages: [
-{
+            {
                 role: 'system',
                 name: 'Oracle Flux',
                 content: `
