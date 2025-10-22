@@ -5,5 +5,19 @@
         "id": 1,
         "name": "Actualités Google",
         "url": "https://news.google.com/rss?hl=fr&gl=FR&ceid=FR:fr"
+    },
+    {
+        "secteur": "Media Information",
+        "categorie": "Actualités Générales",
+        "id": 2,
+        "name": "Le Figaro - Actualités",
+        "url": "https://www.lefigaro.fr/rss/figaro_actualites.xml"
+    },
+        {
+        "secteur": "Mark",
+        "categorie": "Tech Général",
+        "id": 3,
+        "name": "Le Journal du Geek",
+        "url": "http://feeds.feedburner.com/LeJournalDuGeek"
     }
 ]

@@ -94,32 +94,29 @@
                                 <h5 class="mb-0">📡 Liste Complète des Articles</h5>
                                 <button id="refresh-articles" class="btn btn-warning btn-sm">Actualiser</button>
                             </div>
-                            <div class="row mb-3">
-        <div class="col-lg-12">
-            <div id="filter-bar" class="card p-3">
-                <h6 class="mb-2">🔎 Filtres</h6>
-                <div class="row g-2">
-                    <div class="col-md-5">
-                        <input type="text" id="article-search" class="form-control" placeholder="Recherche par titre, source ou contenu...">
-                    </div>
-                    <div class="col-md-4">
-                        <select id="filter-secteur" class="form-select">
-                            <option value="">-- Filtrer par Secteur --</option>
-                            </select>
-                    </div>
-                    <div class="col-md-3">
-                        <select id="filter-categorie" class="form-select">
-                            <option value="">-- Filtrer par Catégorie --</option>
-                            </select>
-                    </div>
-                </div>
-            </div>
-    <div id="articles-list" class="list-container"></div>
-</div>
+                            
                             <div class="card-body">
+                                <div id="filter-bar" class="card p-3 mb-3">
+                                    <h6 class="mb-2">🔎 Filtres</h6>
+                                    <div class="row g-2">
+                                        <div class="col-md-5">
+                                            <input type="text" id="article-search" class="form-control" placeholder="Recherche par titre, source ou contenu...">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <select id="filter-secteur" class="form-select">
+                                                <option value="">-- Filtrer par Secteur --</option>
+                                                </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select id="filter-categorie" class="form-select">
+                                                <option value="">-- Filtrer par Catégorie --</option>
+                                                </select>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div id="articles-list" class="list-container"></div>
                             </div>
-                        </div>
+                            </div>
                     </div>
 
                     <div class="tab-pane fade" id="create-article" role="tabpanel" aria-labelledby="create-tab">
