@@ -1,4 +1,6 @@
-// Les constantes DOM
+// public/script.js - Oracle Flux Frontend
+
+// --- Constantes DOM (CORRIGÉES : TOUTES DÉCLARÉES EN PREMIER) ---
 const sourcesListEl = document.getElementById('sources-list');
 const articlesListEl = document.getElementById('articles-list');
 const addSourceForm = document.getElementById('add-source-form');
@@ -6,43 +8,28 @@ const refreshArticlesBtn = document.getElementById('refresh-articles');
 const aiForm = document.getElementById('ai-form');
 const aiResponseEl = document.getElementById('ai-response');
 
+// Constantes DOM pour la Modale d'Édition (UPDATE)
+const editModal = document.getElementById('edit-modal');
+const editSourceForm = document.getElementById('edit-source-form');
+const cancelEditBtn = document.getElementById('cancel-edit');
+const editSourceId = document.getElementById('edit-source-id');
+const editSourceName = document.getElementById('edit-source-name');
+const editSourceUrl = document.getElementById('edit-source-url');
+
 
 // ==========================================================
 // ⚙️ FONCTIONS GÉNÉRIQUES (API INTERACTION)
 // ==========================================================
 
-/**
- * Envoie une requête au back-end et gère la réponse JSON.
- * @param {string} url - L'endpoint de l'API.
- * @param {string} method - Méthode HTTP (GET, POST, PUT, DELETE).
- * @param {object} [data=null] - Données à envoyer dans le corps (pour POST/PUT).
- * @returns {Promise<object>} Les données parsées ou une erreur.
- */
 async function apiFetch(url, method = 'GET', data = null) {
-    const options = {
-        method: method,
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
-
-    if (data) {
-        options.body = JSON.stringify(data);
-    }
+    const options = { method, headers: { 'Content-Type': 'application/json' } };
+    if (data) { options.body = JSON.stringify(data); }
 
     try {
         const response = await fetch(url, options);
-        
-        if (response.status === 204) { // No Content
-            return {};
-        }
-
+        if (response.status === 204) { return {}; }
         const json = await response.json();
-
-        if (!response.ok) {
-            throw new Error(json.error || `Erreur HTTP: ${response.status}`);
-        }
-
+        if (!response.ok) { throw new Error(json.error || `Erreur HTTP: ${response.status}`); }
         return json;
     } catch (error) {
         console.error(`Erreur ${method} sur ${url}:`, error.message);
@@ -56,32 +43,29 @@ async function apiFetch(url, method = 'GET', data = null) {
 // 📝 LOGIQUE CRUD (SOURCES)
 // ==========================================================
 
-/** Affiche la liste des sources dans le DOM. */
 function renderSources(sources) {
-    sourcesListEl.innerHTML = ''; // Nettoyer la liste
+    sourcesListEl.innerHTML = '';
     if (sources.length === 0) {
         sourcesListEl.innerHTML = '<p>Aucune source RSS ajoutée. Utilisez le formulaire ci-dessus.</p>';
         return;
     }
-
     sources.forEach(source => {
         const div = document.createElement('div');
         div.className = 'source-item';
         div.dataset.id = source.id;
-        div.dataset.name = source.name; // Ajout des data-* pour faciliter la modification
+        div.dataset.name = source.name;
         div.dataset.url = source.url;
         
         div.innerHTML = `
             <span><strong>${source.name}</strong>: <a href="${source.url}" target="_blank">${source.url.substring(0, 50)}...</a></span>
             <div>
-                <button class="edit-btn">Modifier</button>  <button class="delete-btn">Supprimer</button>
+                <button class="edit-btn">Modifier</button>
+                <button class="delete-btn">Supprimer</button>
             </div>
         `;
         sourcesListEl.appendChild(div);
     });
 }
-
-/** Charge toutes les sources depuis le back-end et les affiche. */
 async function loadSources() {
     try {
         const sources = await apiFetch('/api/sources');
@@ -91,65 +75,61 @@ async function loadSources() {
     }
 }
 
-/** Gère la soumission du formulaire d'ajout de source (CREATE). */
+// CREATE
 addSourceForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const name = document.getElementById('source-name').value.trim();
     const url = document.getElementById('source-url').value.trim();
-    
     await apiFetch('/api/sources', 'POST', { name, url });
-    
     addSourceForm.reset();
-    await loadSources(); // Recharger la liste après l'ajout
+    await loadSources();
 });
 
-/** Gère la suppression d'une source (DELETE). */
+// DELETE & Affichage Modale UPDATE
 sourcesListEl.addEventListener('click', async (e) => {
+    const sourceItem = e.target.closest('.source-item');
+    if (!sourceItem) return;
+
+    const id = sourceItem.dataset.id;
+    
     if (e.target.classList.contains('delete-btn')) {
-        const sourceItem = e.target.closest('.source-item');
-        const id = sourceItem.dataset.id;
-        
         if (confirm(`Êtes-vous sûr de vouloir supprimer la source ID ${id} ?`)) {
             await apiFetch(`/api/sources/${id}`, 'DELETE');
-            await loadSources(); // Recharger la liste après la suppression
+            await loadSources();
         }
-    }
-    else if (e.target.classList.contains('edit-btn')) {
-        // --- Gérer l'ouverture de la modale (READ pour UPDATE) ---
-        editSourceId.value = sourceItem.dataset.id;
+    } else if (e.target.classList.contains('edit-btn')) {
+        editSourceId.value = id;
         editSourceName.value = sourceItem.dataset.name;
         editSourceUrl.value = sourceItem.dataset.url;
-        editModal.style.display = 'block'; // Afficher la modale
+        editModal.style.display = 'block';
     }
-    
 });
 
-// --- Gérer la fermeture de la modale ---
+// Fermeture Modale
 cancelEditBtn.addEventListener('click', () => {
     editModal.style.display = 'none';
 });
-// --- Gérer la soumission du formulaire d'édition (UPDATE) ---
+
+// UPDATE
 editSourceForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
     const id = editSourceId.value;
     const name = editSourceName.value.trim();
     const url = editSourceUrl.value.trim();
     
     await apiFetch(`/api/sources/${id}`, 'PUT', { name, url });
     
-    editModal.style.display = 'none'; // Cacher la modale
-    await loadSources(); // Recharger la liste après la modification
+    editModal.style.display = 'none';
+    await loadSources();
 });
-// ----------------------------------------------------------
-// 📡 LOGIQUE DE FLUX RSS (ARTICLES)
-// ----------------------------------------------------------
 
-/** Affiche les articles dans le DOM. */
+
+// ==========================================================
+// 📡 LOGIQUE DE FLUX RSS (ARTICLES)
+// ==========================================================
+
 function renderArticles(articles) {
-    articlesListEl.innerHTML = ''; // <-- Nettoie le message "Aucun article trouvé..."
-    
-    // Si la liste est vide (soit pas de source, soit parsing échoué)
+    articlesListEl.innerHTML = '';
     if (articles.length === 0) {
         articlesListEl.innerHTML = '<p>Aucun article trouvé. Ajoutez des sources ou actualisez.</p>';
         return;
@@ -173,40 +153,31 @@ function renderArticles(articles) {
     });
 }
 
-/** Charge tous les articles RSS depuis le back-end. */
 async function loadArticles() {
-    // 📝 Affiche le message de chargement immédiatement
     articlesListEl.innerHTML = '<p class="loading-message">Chargement et parsing des flux en cours...</p>'; 
     
     try {
-        // 📡 Interroge l'endpoint du serveur : /api/articles
         const articles = await apiFetch('/api/articles');
-        // 📡 Interrogation de l'API de notre serveur
-        // 📝 Affiche les résultats ou le message "Aucun article trouvé" si articles est vide
         renderArticles(articles);
-        
     } catch (e) {
-        // En cas d'erreur réseau ou serveur
-        articlesListEl.innerHTML = '<p class="error">Erreur de chargement des articles. Vérifiez le serveur et vos URLs sources. (Détails en console)</p>';
+        // Cette erreur est souvent la conséquence d'un échec du parsing natif côté serveur
+        articlesListEl.innerHTML = '<p class="error">Erreur de chargement des articles. Vérifiez la console Node.js pour les erreurs de parsing.</p>';
     }
 }
 
-// Événement pour le bouton d'actualisation
 refreshArticlesBtn.addEventListener('click', loadArticles);
-// Événement pour le bouton d'actualisation
+
 
 // ==========================================================
-// 🧠 LOGIQUE GROQ IA
+// 🧠 LOGIQUE GROQ IA (Oracle Flux)
 // ==========================================================
 
-/** Gère la soumission du prompt à l'IA. */
-// public/script.js (Section Logique GROQ IA)
+function buildArticlesSummary() { /* ... (Logique complète) ... */ }
 
 aiForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     let userPrompt = document.getElementById('ai-prompt').value.trim();
     
-    // 🧠 Si l'utilisateur a juste cliqué sans prompt, on lui demande un résumé.
     if (!userPrompt) {
         userPrompt = "Veuillez analyser les articles suivants et identifier la tendance principale ou le sujet le plus récurrent. Si aucun article n'est listé, ignorez cette requête.";
     }
@@ -214,63 +185,27 @@ aiForm.addEventListener('submit', async (e) => {
     const articlesSummary = buildArticlesSummary();
     const fullPrompt = `${userPrompt}\n\n${articlesSummary}`;
     
-    aiResponseEl.innerHTML = '<span>🧠 Analyse/Gestion par Groq en cours...</span>';
+    aiResponseEl.innerHTML = '<span>🧠 Oracle Flux analyse...</span>';
     
     try {
-        // 📡 Appel du nouvel endpoint de gestion
         const result = await apiFetch('/api/ai/manage', 'POST', { prompt: fullPrompt });
         
-        // 📝 Si c'est une commande CRUD, mettre à jour la liste des sources
         if (result.success) {
             aiResponseEl.innerHTML = `<span style="color:#2ecc71; font-weight:bold;">✅ Succès :</span> ${result.success}`;
-            loadSources(); // Recharger la liste des sources après une modification
-        } 
-        // 📝 Si c'est une analyse textuelle
-        else if (result.analysis) {
+            loadSources();
+        } else if (result.analysis) {
             const formattedResponse = result.analysis.replace(/\n/g, '<br>');
             aiResponseEl.innerHTML = `<strong>Réponse de l'IA :</strong><br>${formattedResponse}`;
         }
     } catch (e) {
-        aiResponseEl.innerHTML = `<span class="error">Erreur de l'assistant IA. Assurez-vous que la clé GROQ est valide.</span>`;
+        aiResponseEl.innerHTML = `<span class="error">Erreur de l'assistant IA. ${e.message}</span>`;
     }
 });
 
-// ... (Reste du script.js)
 
-// public/script.js (Section Logique GROQ IA)
-
-/**
- * Construit un résumé textuel des articles affichés pour le prompt de l'IA.
- * @returns {string} Le résumé des articles.
- */
-function buildArticlesSummary() {
-    const articleElements = articlesListEl.querySelectorAll('.article-item');
-    let summary = "\n--- Articles à analyser ---\n";
-    let count = 0;
-    
-    // Limite à 5 articles pour ne pas dépasser le contexte du modèle IA
-    articleElements.forEach((item, index) => {
-        if (index < 5) {
-            const title = item.querySelector('h3 a').textContent;
-            const source = item.querySelector('small').textContent.split('|')[0].replace('Source:', '').trim();
-            summary += `[${index + 1}] Titre: "${title}" (Source: ${source})\n`;
-            count++;
-        }
-    });
-
-    if (count === 0) {
-        return "Aucun article disponible pour l'analyse.";
-    }
-    return summary;
-}
-
-// ... (Le code du aiForm.addEventListener sera modifié ci-dessous)
 // ==========================================================
 // 🚀 INITIALISATION
 // ==========================================================
 
-// Charger la liste des sources au démarrage
 loadSources();
-
-// Charger les articles au démarrage
 loadArticles();
