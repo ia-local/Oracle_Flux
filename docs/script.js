@@ -68,11 +68,13 @@ function renderSources(sources) {
         const div = document.createElement('div');
         div.className = 'source-item';
         div.dataset.id = source.id;
+        div.dataset.name = source.name; // Ajout des data-* pour faciliter la modification
+        div.dataset.url = source.url;
         
         div.innerHTML = `
             <span><strong>${source.name}</strong>: <a href="${source.url}" target="_blank">${source.url.substring(0, 50)}...</a></span>
             <div>
-                <button class="delete-btn">Supprimer</button>
+                <button class="edit-btn">Modifier</button>  <button class="delete-btn">Supprimer</button>
             </div>
         `;
         sourcesListEl.appendChild(div);
@@ -112,9 +114,33 @@ sourcesListEl.addEventListener('click', async (e) => {
             await loadSources(); // Recharger la liste après la suppression
         }
     }
+    else if (e.target.classList.contains('edit-btn')) {
+        // --- Gérer l'ouverture de la modale (READ pour UPDATE) ---
+        editSourceId.value = sourceItem.dataset.id;
+        editSourceName.value = sourceItem.dataset.name;
+        editSourceUrl.value = sourceItem.dataset.url;
+        editModal.style.display = 'block'; // Afficher la modale
+    }
+    
 });
 
-
+// --- Gérer la fermeture de la modale ---
+cancelEditBtn.addEventListener('click', () => {
+    editModal.style.display = 'none';
+});
+// --- Gérer la soumission du formulaire d'édition (UPDATE) ---
+editSourceForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const id = editSourceId.value;
+    const name = editSourceName.value.trim();
+    const url = editSourceUrl.value.trim();
+    
+    await apiFetch(`/api/sources/${id}`, 'PUT', { name, url });
+    
+    editModal.style.display = 'none'; // Cacher la modale
+    await loadSources(); // Recharger la liste après la modification
+});
 // ----------------------------------------------------------
 // 📡 LOGIQUE DE FLUX RSS (ARTICLES)
 // ----------------------------------------------------------

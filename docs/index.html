@@ -45,7 +45,18 @@
                 </div>
         </section>
     </main>
-
+<div id="edit-modal" class="modal-hidden">
+    <h3>Modifier la Source</h3>
+    <form id="edit-source-form">
+        <input type="hidden" id="edit-source-id">
+        <input type="text" id="edit-source-name" placeholder="Nouveau Nom" required>
+        <input type="url" id="edit-source-url" placeholder="Nouvelle URL" required>
+        <div class="modal-actions">
+            <button type="submit" class="save-btn">Sauvegarder</button>
+            <button type="button" id="cancel-edit" class="cancel-btn">Annuler</button>
+        </div>
+    </form>
+</div>
     <script src="script.js"></script>
 </body>
 </html>

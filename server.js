@@ -308,24 +308,26 @@ app.post('/api/sources', async (req, res) => {
 
 // ----------------------
 // U (Update) : Mettre à jour une source existante
+// server.js (Endpoint PUT /api/sources/:id)
+
 app.put('/api/sources/:id', async (req, res) => {
     try {
         const id = parseInt(req.params.id);
         const { name, url } = req.body;
         
         let sources = await readSources();
-        const index = sources.findIndex(s => s.id === id);
+        const index = sources.findIndex(s => s.id === id); // Trouver l'index par ID
 
         if (index === -1) {
             return res.status(404).json({ error: "Source non trouvée." });
         }
 
-        // Mise à jour (permet de modifier le nom, l'URL ou les deux)
+        // Mise à jour (uniquement si les champs sont fournis)
         sources[index].name = name || sources[index].name;
         sources[index].url = url || sources[index].url;
 
         await writeSources(sources);
-        res.json(sources[index]);
+        res.json(sources[index]); // Retourne la source mise à jour
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
