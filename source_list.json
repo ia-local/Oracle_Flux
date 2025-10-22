@@ -19,5 +19,12 @@
         "id": 3,
         "name": "Le Journal du Geek",
         "url": "http://feeds.feedburner.com/LeJournalDuGeek"
+    },
+            {
+        "secteur": "github",
+        "categorie": "Tech Général",
+        "id": 3,
+        "name": "Le Journal du Geek",
+        "url": "http://feeds.feedburner.com/LeJournalDuGeek"
     }
 ]
