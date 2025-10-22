@@ -1,0 +1,212 @@
+[
+    {
+        "secteur": "Secteur Application Démocratique",
+        "categorie": "Politique / Société",
+        "id": 7,
+        "name": "Libération - Actualités",
+        "url": "http://rss.liberation.fr/rss/53"
+    },
+    {
+        "secteur": "Secteur Application Démocratique",
+        "categorie": "Politique / Société",
+        "id": 23,
+        "name": "Mediapart - Tous les articles",
+        "url": "http://www.mediapart.fr/articles/feed"
+    },
+    {
+        "secteur": "Secteur Application Démocratique",
+        "categorie": "Économie / Finance",
+        "id": 20,
+        "name": "Les Echos - À la Une",
+        "url": "http://syndication.lesechos.fr/rss/rss_une.xml"
+    },
+    {
+        "secteur": "Secteur Application Démocratique",
+        "categorie": "Économie / Finance",
+        "id": 21,
+        "name": "Boursier.com - Flash infos",
+        "url": "https://www.boursier.com/xml/rss/flash-infos.xml"
+    },
+    {
+        "secteur": "Secteur Application Démocratique",
+        "categorie": "Science / Santé",
+        "id": 19,
+        "name": "Futura - Actualités",
+        "url": "https://www.futura-sciences.com/rss/actualites.xml"
+    },
+    {
+        "secteur": "Secteur Application Démocratique",
+        "categorie": "Science / Santé",
+        "id": 18,
+        "name": "Sciences et Avenir - Actu",
+        "url": "http://sciencesetavenir.nouvelobs.com/rss.xml"
+    },
+    {
+        "secteur": "Media Information",
+        "categorie": "Actualités Générales",
+        "id": 3,
+        "name": "Actualités Google",
+        "url": "https://news.google.com/rss?hl=fr&gl=FR&ceid=FR:fr"
+    },
+    {
+        "secteur": "Media Information",
+        "categorie": "Actualités Générales",
+        "id": 5,
+        "name": "Le Monde - À la Une",
+        "url": "http://www.lemonde.fr/rss/une.xml"
+    },
+    {
+        "secteur": "Media Information",
+        "categorie": "Actualités Générales",
+        "id": 6,
+        "name": "Le Figaro - Actualités",
+        "url": "https://www.lefigaro.fr/rss/figaro_actualites.xml"
+    },
+    {
+        "secteur": "Media Information",
+        "categorie": "Actualités Générales",
+        "id": 8,
+        "name": "BBC News - Monde (FR)",
+        "url": "http://feeds.bbci.co.uk/french/rss.xml"
+    },
+    {
+        "secteur": "Media Information",
+        "categorie": "Actualités Internationales",
+        "id": 9,
+        "name": "Reuters - Top News (EN)",
+        "url": "http://feeds.reuters.com/reuters/topNews"
+    },
+    {
+        "secteur": "Media Information",
+        "categorie": "Presse d'Opinion",
+        "id": 22,
+        "name": "Slate.fr",
+        "url": "http://www.slate.fr/rss.xml"
+    },
+    {
+        "secteur": "Mark",
+        "categorie": "Marketing / Référencement",
+        "id": 16,
+        "name": "Blog du Modérateur (BDM)",
+        "url": "https://www.blogdumoderateur.com/feed/"
+    },
+    {
+        "secteur": "Mark",
+        "categorie": "Marketing / Référencement",
+        "id": 17,
+        "name": "Search Engine Land (EN)",
+        "url": "https://feeds.searchengineland.com/searchengineland"
+    },
+    {
+        "secteur": "Mark",
+        "categorie": "Développement / UX",
+        "id": 14,
+        "name": "Smashing Magazine (EN)",
+        "url": "https://www.smashingmagazine.com/feed/"
+    },
+    {
+        "secteur": "Mark",
+        "categorie": "Tech Général",
+        "id": 10,
+        "name": "Le Journal du Geek",
+        "url": "http://feeds.feedburner.com/LeJournalDuGeek"
+    },
+    {
+        "secteur": "Mark",
+        "categorie": "Tech Général",
+        "id": 11,
+        "name": "ZDNet France - Actualités",
+        "url": "http://www.zdnet.fr/feeds/rss/actualites/"
+    },
+    {
+        "secteur": "Mark",
+        "categorie": "Tech Général",
+        "id": 12,
+        "name": "TechCrunch (EN)",
+        "url": "http://feeds.feedburner.com/TechCrunch/"
+    },
+    {
+        "secteur": "Mark",
+        "categorie": "Tech Général",
+        "id": 13,
+        "name": "Numerama",
+        "url": "https://www.numerama.com/feed/"
+    },
+    {
+        "secteur": "Groupe",
+        "categorie": "Local / Média RTL",
+        "id": 1,
+        "name": "Actualités RTL Monde",
+        "url": "https://infos.rtl.lu/rss/grande-region"
+    },
+    {
+        "secteur": "Groupe",
+        "categorie": "Local / Média RTL",
+        "id": 2,
+        "name": "RTL",
+        "url": "https://infos.rtl.lu/rss/headlines"
+    },
+    {
+        "secteur": "Groupe",
+        "categorie": "Spécialisé / En Continu",
+        "id": 4,
+        "name": "Le Monde (En Continu)",
+        "url": "https://www.lemonde.fr/rss/en-continu.xml"
+    },
+    {
+        "secteur": "Groupe",
+        "categorie": "Spécialisé / Code",
+        "id": 15,
+        "name": "Hacker News (Frontpage)",
+        "url": "https://hnrss.org/frontpage"
+    },
+    {
+        "secteur": "Groupe",
+        "categorie": "Spécialisé / Code",
+        "id": 24,
+        "name": "Le Courrier du Hacker",
+        "url": "https://lecourrierduhacker.com/rss.xml"
+    },
+    {
+        "secteur": "Réseaux",
+        "categorie": "YouTube (Exemple Tech)",
+        "id": 25,
+        "name": "Youtube - Chaine E-penser",
+        "url": "https://www.youtube.com/feeds/videos.xml?user=epenser1"
+    },
+    {
+        "secteur": "Réseaux",
+        "categorie": "LinkedIn (Exemple Blog)",
+        "id": 26,
+        "name": "LinkedIn - Blog Officiel Tech (EN)",
+        "url": "https://engineering.linkedin.com/blog.rss"
+    },
+    {
+        "secteur": "Réseaux",
+        "categorie": "Telegram (Exemple News)",
+        "id": 27,
+        "name": "Reddit - r/france (Alternative Telegram)",
+        "url": "https://www.reddit.com/r/france/.rss"
+    },
+    {
+        "secteur": "Réseaux",
+        "categorie": "Facebook (Exemple Actualités)",
+        "id": 28,
+        "name": "Reddit - r/Actualité (Alternative Facebook)",
+        "url": "https://www.reddit.com/r/Actualite/.rss"
+    },
+    {
+        "secteur": "Réseaux",
+        "categorie": "Instagram (Exemple Photos)",
+        "id": 29,
+        "name": "Flickr - Photos Populaires (Alternative Instagram)",
+        "url": "https://api.flickr.com/services/feeds/photos_public.gne"
+    },
+    {
+        "secteur": "Réseaux",
+        "categorie": "Twitter/X (Exemple Officiel)",
+        "id": 30,
+        "name": "Reddit - r/Twitter (Alternative X/Twitter)",
+        "url": "https://www.reddit.com/r/twitter/.rss"
+    }
+]

@@ -186,3 +186,61 @@ button:hover {
 .modal-actions .cancel-btn:hover {
     background-color: #95a5a6;
 }
+/* public/style.css (Minimaliste, s'appuie sur Bootstrap) */
+
+/* Ajustements généraux pour le contenu */
+main {
+    padding-top: 20px;
+}
+
+/* Styles pour les titres des sections de cartes */
+.card-header h2 {
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+    color: white !important;
+}
+
+/* Style des éléments de liste de sources */
+.source-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 5px solid #3498db; /* Maintient une touche de couleur */
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    transition: background-color 0.2s;
+}
+.source-item:hover {
+    background-color: #f8f9fa;
+}
+
+/* Style des articles */
+.article-item {
+    padding: 15px;
+    border: 1px solid #e9ecef;
+    border-radius: .25rem;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.05);
+}
+.article-item h3 a {
+    color: #007bff; /* Bleu Bootstrap */
+    text-decoration: none;
+    font-size: 1.25rem;
+}
+
+/* Styles spécifiques à l'IA */
+#ai-response {
+    min-height: 100px;
+    white-space: pre-wrap;
+    font-size: 0.95rem;
+}
+
+/* Ajustement pour le spinner de chargement */
+.loading-message {
+    font-style: italic;
+    color: #6c757d;
+}
+
+/* Styles pour les messages de succès/erreur */
+.error { color: #dc3545; font-weight: bold; }

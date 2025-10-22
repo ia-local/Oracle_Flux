@@ -1,0 +1,8 @@
+/* filtre.css - Styles spécifiques au module de filtrage */
+
+/* Style pour la barre de recherche ou les sélecteurs de filtre */
+#filter-bar {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+}

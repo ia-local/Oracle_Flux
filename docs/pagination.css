@@ -1,0 +1,7 @@
+/* pagination.css - Styles spécifiques à la pagination */
+
+/* Style pour les boutons de navigation (Précédent/Suivant) */
+.pagination-controls {
+    margin-top: 15px;
+    text-align: center;
+}
