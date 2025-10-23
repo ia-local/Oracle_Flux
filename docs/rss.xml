@@ -6,13 +6,31 @@
         <lastBuildDate>Sat, 07 Sep 2002 00:00:01 GMT</lastBuildDate>
         <link>http://www.example.org</link>
         <item>
-            <title>Actualité N°1</title>
+            <title>Actualité Journal du Geek</title>
             <description>Ceci est ma première actualité</description>
             <pubDate>Sat, 07 Sep 2002 00:00:01 GMT</pubDate>
             <link>http://www.example.org/actu1</link>
         </item>
         <item>
-            <title>Actualité N°2</title>
+            <title>Actualités Google</title>
+            <description>Ceci est ma seconde actualité</description>
+            <pubDate>Sat, 07 Sep 2002 00:00:01 GMT</pubDate>
+            <link>http://www.example.org/actu2</link>
+        </item>
+        <item>
+            <title>Actualité Figaro</title>
+            <description>Ceci est ma seconde actualité</description>
+            <pubDate>Sat, 07 Sep 2002 00:00:01 GMT</pubDate>
+            <link>http://www.example.org/actu2</link>
+        </item>
+        <item>
+            <title>Actualité BFM</title>
+            <description>Ceci est ma seconde actualité</description>
+            <pubDate>Sat, 07 Sep 2002 00:00:01 GMT</pubDate>
+            <link>http://www.example.org/actu2</link>
+        </item>
+        <item>
+            <title>Actualité Github</title>
             <description>Ceci est ma seconde actualité</description>
             <pubDate>Sat, 07 Sep 2002 00:00:01 GMT</pubDate>
             <link>http://www.example.org/actu2</link>

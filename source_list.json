@@ -7,6 +7,13 @@
         "url": "https://news.google.com/rss?hl=fr&gl=FR&ceid=FR:fr"
     },
     {
+        "secteur": "Actualités",
+        "categorie": "check news",
+        "id": 3,
+        "name": "BFM",
+        "url": "https://www.bfmtv.com/rss/news-24-7/"
+    },
+    {
         "secteur": "Media Information",
         "categorie": "Actualités Générales",
         "id": 2,
@@ -24,7 +31,8 @@
         "secteur": "github",
         "categorie": "Tech Général",
         "id": 4,
-        "name": "Le Journal",
+        "name": "github",
         "url": "https://ia-local.github.io/Oracle_Flux/rss.xml"
     }
 ]
+
